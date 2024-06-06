@@ -1,0 +1,33 @@
+{
+  "name": "create-framelib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm exec swc *.ts -d dist && tsc"
+  },
+  "bin": {
+    "create-framelib": "./dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.5.25",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "react": "19.0.0-rc-eb259b5d3b-20240605",
+    "react-dom": "19.0.0-rc-eb259b5d3b-20240605",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/prompts": "^2.4.9",
+    "commander": "^12.1.0",
+    "picocolors": "^1.0.1",
+    "prompts": "^2.4.2"
+  }
+}

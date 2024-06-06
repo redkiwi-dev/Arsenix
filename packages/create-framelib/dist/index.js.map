@@ -1,0 +1,1 @@
+{"version":3,"sources":["../index.ts"],"sourcesContent":["#!/usr/bin/env node\n\nconsole.log(\"hi\");\n"],"names":["console","log"],"rangeMappings":";","mappings":";AAEAA,QAAQC,GAAG,CAAC"}
