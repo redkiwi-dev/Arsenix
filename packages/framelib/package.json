@@ -1,0 +1,22 @@
+{
+  "name": "framelib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.5.25",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "react": "19.0.0-rc-eb259b5d3b-20240605",
+    "react-dom": "19.0.0-rc-eb259b5d3b-20240605",
+    "typescript": "^5.4.5"
+  }
+}
