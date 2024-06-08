@@ -1,16 +1,24 @@
 #!/usr/bin/env node
 import { program } from "commander";
+import fs from "fs";
+import path from "path";
+import { red } from "picocolors";
+import url from "url";
+
+const programInfo = {
+  name: "create-framelib",
+  description: "Framework for build React libraries",
+  version: "0.0.1",
+};
 
 program
-  .name("create-framelib")
-  .description("Framework for building React libraries")
-  .version("0.0.1");
+  .name(programInfo.name)
+  .description(programInfo.description)
+  .version(programInfo.version);
 
 program
+  .argument("project-name")
   .option("project-name", "<project-name> [options]", "my-lib")
-  .option("-t, --typescript", "use typescript", true)
-  .option("-j, --javascript", "use javascript", false)
-  .option("--tailwind", "use tailwindcss", true)
   .option(
     "-p, --package-manager [npm/yarn/pnpm/bun]",
     "choose the package manager",
@@ -20,14 +28,59 @@ program
 
 interface Options {
   projectName: string;
-  typescript: boolean;
-  javascript: boolean;
-  tailwind: boolean;
   packageManager: "npm" | "yarn" | "pnpm" | "bun";
 }
 
-function run(opt: Options) {
-  console.log(opt.typescript);
+async function run(name: string) {
+  const currentModuleUrl = new URL(import.meta.url);
+  const currentModulePath = url.fileURLToPath(currentModuleUrl);
+  const appBaseDir = path.dirname(currentModulePath!);
+  const cwd = process.cwd();
+  const fullPath = path.resolve(cwd, name);
+  const dirExists = fs.existsSync(fullPath);
+
+  function logInfo() {
+    console.log(`directory: ${fullPath}`);
+    console.log(`${programInfo.name} version: ${programInfo.version}`);
+  }
+
+  if (dirExists) {
+    console.error("error: directory already exists \n");
+    logInfo();
+    return;
+  }
+
+  async function copyDir(fromPath: string, toPath: string) {
+    try {
+      fs.mkdirSync(toPath);
+      const files = fs.readdirSync(fromPath);
+
+      for (const file of files) {
+        const filePath = path.join(fromPath, file);
+        const stat = fs.statSync(filePath);
+
+        if (stat.isDirectory()) {
+          await copyDir(filePath, path.join(toPath, file));
+        } else {
+          fs.copyFileSync(filePath, path.join(toPath, file));
+        }
+      }
+    } catch (err) {
+      console.error("error: failed to copy template \n");
+      console.error(err);
+      logInfo();
+      fs.rmdirSync(toPath);
+    }
+  }
+
+  const templatePath = path.join(appBaseDir, "..", "templates", "default");
+  await copyDir(templatePath, fullPath);
+
+  // 4. add the neccessary depencies based on the options
+  // 5. test if the package manager works by checking the version
+  // - if it does run the installation command
+  // - if it doesn't switch back to the npm
+  // 6. log the current status
 }
 
 program.parse();
