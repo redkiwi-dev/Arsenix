@@ -9,7 +9,7 @@
     "compile": "tsc && pnpm exec swc *.ts -d dist --watch"
   },
   "bin": {
-    "create-framelib": "./dist/index.js"
+    "create-arsenix-app": "./dist/index.js"
   },
   "author": "redkiwi-dev",
   "license": "MIT",
