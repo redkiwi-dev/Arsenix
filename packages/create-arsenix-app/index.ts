@@ -6,15 +6,16 @@ import { red } from "picocolors";
 import url from "url";
 
 const programInfo = {
-  name: "create-framelib",
+  name: "create-arsenix-app",
   description: "Framework for build React libraries",
-  version: "0.0.1",
+  version: "1.0.0",
 };
 
 program
   .name(programInfo.name)
   .description(programInfo.description)
   .version(programInfo.version);
+
 
 program
   .argument("project-name")

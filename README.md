@@ -1,4 +1,4 @@
-# framelib
+# Arsenix
 
 Framework for building React libraries
 

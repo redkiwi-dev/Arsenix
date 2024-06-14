@@ -128,9 +128,9 @@ import fs from "fs";
 import path from "path";
 import url from "url";
 var programInfo = {
-    name: "create-framelib",
+    name: "create-arsenix-app",
     description: "Framework for build React libraries",
-    version: "0.0.1"
+    version: "1.0.0"
 };
 program.name(programInfo.name).description(programInfo.description).version(programInfo.version);
 program.argument("project-name").option("project-name", "<project-name> [options]", "my-lib").option("-p, --package-manager [npm/yarn/pnpm/bun]", "choose the package manager", "npm").action(run);
