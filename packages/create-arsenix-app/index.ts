@@ -2,7 +2,6 @@
 import { program } from "commander";
 import fs from "fs";
 import path from "path";
-import { red } from "picocolors";
 import url from "url";
 
 const programInfo = {
